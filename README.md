@@ -1,2 +1,2 @@
 # BankMellat
-libraryBank Mellat IRAN
+library Bank Mellat IRAN
