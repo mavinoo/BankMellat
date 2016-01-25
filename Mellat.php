@@ -184,10 +184,6 @@ class Mellat {
     }
 
     public function get($params){
-        $params["RefId"]            = $params["RefId"] ;
-        $params["ResCode"]          = $params["ResCode"] ;
-        $params["SaleOrderId"]      = $params["SaleOrderId"] ;
-        $params["SaleReferenceId"]  = $params["SaleReferenceId"] ;
         if( $params["ResCode"] == 0 ){
             if( $this->verify_payment($params) == true ) {
                 if( $this->settle_payment($params) == true ) {
