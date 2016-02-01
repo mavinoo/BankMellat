@@ -48,7 +48,7 @@ class Mellat {
         $payerId = 0;
         $err = $client->getError();
         if ($err) {
-            return FALSE;
+            return false;
         }
         $parameters = array(
             'terminalId'        => $terminalId,
@@ -65,26 +65,25 @@ class Mellat {
         $result = $client->call('bpPayRequest', $parameters, 'http://interfaces.core.sw.bps.com/');
 
         if ($client->fault) {
-            return FALSE;
+            return false;
         }
         else {
             $resultStr  = $result;
             $err = $client->getError();
             if ($err) {
-                return FALSE;
+                return false;
             }
             else {
                 foreach ($resultStr as $value) {
                     $resultStr = $value;
                 }
                 $res = explode (',',$resultStr);
-                echo '<div style="display:none;">Pay Response is : ' . $resultStr . '</div>';
                 $ResCode = $res[0];	
                 if ($ResCode == "0") {
                     $this->postRefId($res[1]);
                 }
                 else {
-                    return FALSE;
+                    return false;
                 }
             }
         }
@@ -97,7 +96,7 @@ class Mellat {
         $verifySaleReferenceId      = $params['SaleReferenceId'];
         $err = $client->getError();
         if ($err) {
-            return FALSE;
+            return false;
         }
         $parameters = array(
             'terminalId'            => $this->terminal,
@@ -109,13 +108,13 @@ class Mellat {
         );
         $result = $client->call('bpVerifyRequest', $parameters, 'http://interfaces.core.sw.bps.com/');
         if ($client->fault) {
-            return FALSE;
+            return false;
         } 
         else {
             $resultStr = $result;
             $err = $client->getError();
             if ($err) {
-                return FALSE;
+                return false;
             }
             else {
                 return true;
@@ -142,13 +141,13 @@ class Mellat {
             'saleReferenceId'       => $settleSaleReferenceId);
         $result = $client->call('bpSettleRequest', $parameters, 'http://interfaces.core.sw.bps.com/');
         if ($client->fault) {
-            return FALSE;
+            return false;
         }
         else {
             $resultStr = $result;
             $err = $client->getError();
             if ($err) {
-                return FALSE;
+                return false;
             }
             else {
                 if($resultStr == '0') {
@@ -180,7 +179,7 @@ class Mellat {
     }
 
     protected function error($number){
-        return FALSE;
+        return false;
     }
 
     public function get($params){
